@@ -1,4 +1,4 @@
-//2 algoritmos de suporte:
+//Achar menor caminho, possui 2 algoritmos de suporte:
 
 // INITIALIZE-SINGLE-SOURCE (lista G,vértice s) //G é um grafo ponderando (como lista de adjacências); s é vértice fonte
 //     for each 𝑣 ∈ 𝑉 do
