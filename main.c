@@ -1,7 +1,7 @@
-#include "Headers/BuscaLargura.h"
-#include "Headers/Dijkstra.h"
-#include "Headers/Prim.h"
-#include "Headers/Prufer.h"
+#include "Algoritmos/BuscaLargura.c"
+#include "Algoritmos/Dijkstra.c"
+#include "Algoritmos/Prim.c"
+#include "Algoritmos/Prufer.c"
 #include <stdio.h>
 
 int main(){
