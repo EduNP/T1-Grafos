@@ -21,11 +21,11 @@ def BFS(grafo, vertice):
         u = Q.pop()
         auxVertice = grafo.lista[u]
         while auxVertice != None:
-            if cor[auxVertice.valor] == "branco":
-                cor[auxVertice.valor] = "cinza"
-                d[auxVertice.valor] = d[u] + 1
-                pai[auxVertice.valor] = u
-                Q.append(auxVertice.valor)
+            if cor[auxVertice.vertice] == "branco":
+                cor[auxVertice.vertice] = "cinza"
+                d[auxVertice.vertice] = d[u] + 1
+                pai[auxVertice.vertice] = u
+                Q.append(auxVertice.vertice)
             auxVertice = auxVertice.proximo
         cor[u] = "preto"
 
