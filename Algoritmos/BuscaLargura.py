@@ -29,23 +29,23 @@
 import math
 
 
-class AdjNo():
+class AdjuntaNo():
     def __init__(self, valor):
         self.vertice = valor
-        self.next = None
+        self.proximo = None
 
 class Grafo:
-    def __init__(self, numVertice):
-        self.numV = numVertice
-        self.grafo = [None] * self.numV #Lista de adjacencia do grafo
+    def __init__(self, vertices):
+        self.vertices = vertices
+        self.grafo = [None] * self.vertices #Lista de adjacencia do grafo
 
-    def add_aresta(self, inicio, destino):
-        no = AdjNo(destino) #cria um novo no
-        no.next = self.grafo[inicio] #insere na lista de Inicio para destino
+    def adicionarAresta(self, inicio, destino):
+        no = AdjuntaNo(destino) #cria um novo no
+        no.proximo = self.grafo[inicio] #insere na lista de Inicio para destino
         self.grafo[inicio] = no
 
-        no = AdjNo(inicio)
-        no.next = self.grafo[destino] #insere na lsita de Destino para Inicio
+        no = AdjuntaNo(inicio)
+        no.proximo = self.grafo[destino] #insere na lsita de Destino para Inicio
         self.grafo[destino] = no
 
 def BFS(grafo, vertice):
@@ -76,8 +76,9 @@ def BFS(grafo, vertice):
         
 
 if __name__ == "__main__":
+    
     graph = Grafo(3)
-    graph.add_aresta(0,1)
-    graph.add_aresta(1,2)
+    graph.adicionarAresta(0,1)
+    graph.adicionarAresta(1,2)
 
     BFS(graph,0)
