@@ -29,3 +29,7 @@ Dijkstra(lista G,vértice s) //G como lista de adjacências, ponderado (info em 
 """
 
 import Grafo
+
+def Dijkstra():
+
+    pass

@@ -44,7 +44,7 @@ def BFS(grafo, vertice):
     d = []
     pai = []
 
-    for i in range(grafo.numV):
+    for i in range(grafo.vertices):
         if i != vertice:
             cor.insert(i,"branco")
             d.insert(i, math.inf)

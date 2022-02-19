@@ -21,4 +21,50 @@ Prim(lista G, r) //G ponderado como lista de adjacências //r é o vértice raiz
 
 """
 
-import Grafo
+import math
+
+def Prim(Grafo, raiz):
+
+    V = []
+    chave = [] 
+    pai = []
+    Q = []
+
+    for elemento in V:
+
+        chave[V] = math.inf
+        pai[V] = None
+        print(elemento)
+        pass
+
+    chave[raiz] = 0
+
+    Q = V
+
+    while not Q ==  None:
+
+        u = extrairMenor(Q)
+
+        for v in Grafo[u]:
+
+            if v in Q and Grafo.valorPeso(u,v) < chave[v]:
+                pai[v] = u
+                chave[v] = Grafo.valorPeso(u,v)
+                pass
+
+            pass
+        
+        pass
+
+    return pai
+    
+def extrairMenor(Q):
+
+    menor = Q[0]
+
+    for valor in Q:
+
+        if menor > valor:
+            menor = valor
+
+    return menor
