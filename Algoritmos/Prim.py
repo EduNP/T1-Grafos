@@ -37,23 +37,21 @@ def Prim(Grafo, raiz):
 
         chave.insert(u, math.inf)
         pai.insert(u, None)
-        print(u)
         pass
 
-    chave.insert(raiz, 0)
+    chave[raiz] = 0
 
     Q = V
 
-    while not Q ==  None:
+    while not len(Q) == 0:
 
         u = extrairMenor(Q)
 
         for v in Grafo.xRetornarElementos(u):
 
-            print(u,v,Grafo.valorPeso(u,v),chave[v])
             if v in Q and Grafo.valorPeso(u,v) < chave[v]:
-                pai.insert(v, u)
-                chave.insert(v, Grafo.valorPeso(u,v))
+                pai[v] = u
+                chave[v] = Grafo.valorPeso(u,v)
                 pass
 
             pass
@@ -64,11 +62,13 @@ def Prim(Grafo, raiz):
     
 def extrairMenor(Q):
 
-    menor = Q[0]
+    menor = [ Q[0], 0 ]
 
-    for valor in Q:
+    for indice, valor in enumerate(Q):
 
-        if menor > valor:
-            menor = valor
+        if menor[0] > valor:
+            menor = [valor, indice]
 
-    return menor
+    del Q[menor[1]]
+
+    return menor[0]

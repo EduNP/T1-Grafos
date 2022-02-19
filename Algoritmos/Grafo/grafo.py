@@ -25,7 +25,6 @@ class Grafo():
         
         proximo = self.lista[inicio]
 
-        print(f"proximo {proximo.vertice} destino {destino}")
         while proximo.vertice != destino:
             atual = proximo
             proximo = proximo.proximo
