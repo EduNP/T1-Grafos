@@ -22,11 +22,35 @@ class Grafo():
     def valorPeso(self, inicio, destino):
 
         atual = self.lista[inicio]
-        proximo = self.lista[inicio].proximo
+        
+        proximo = self.lista[inicio]
 
-        while proximo != destino:
+        print(f"proximo {proximo.vertice} destino {destino}")
+        while proximo.vertice != destino:
             atual = proximo
             proximo = proximo.proximo
+            if proximo == None:
+                break
                 
         return atual.peso
-            
+    
+    def retornarElementos(self):
+
+        retorno = [i for i in range(0,len(self.lista))]
+
+        return retorno
+
+    def xRetornarElementos(self, elemento):
+
+        lista = []
+        
+        lista.append(self.lista[elemento].vertice)
+
+        proximo = self.lista[elemento].proximo
+
+        while proximo != None:
+
+            lista.append(proximo.vertice)
+            proximo = proximo.proximo
+ 
+        return lista
