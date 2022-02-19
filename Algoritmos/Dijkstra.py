@@ -27,3 +27,5 @@ Dijkstra(lista G,vértice s) //G como lista de adjacências, ponderado (info em 
     return 𝑑, 𝜋 //𝑑 contém as distâncias de s a v; 𝜋 contém a árvore de caminhos mínimos
 
 """
+
+import Grafo

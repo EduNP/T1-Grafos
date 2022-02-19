@@ -41,3 +41,5 @@ decoderPrufer(s) //s é o vetor com o código de Prüfer
         return 𝑇 //𝑇 contém a árvore reconstruída
 
 """
+
+import Grafo

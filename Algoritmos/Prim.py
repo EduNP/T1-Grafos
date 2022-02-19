@@ -20,3 +20,5 @@ Prim(lista G, r) //G ponderado como lista de adjacências //r é o vértice raiz
     return 𝜋 //𝜋 contém a árvore geradora mínima
 
 """
+
+import Grafo
