@@ -28,8 +28,61 @@ Dijkstra(lista G,vértice s) //G como lista de adjacências, ponderado (info em 
 
 """
 
-import Grafo
+import math
 
-def Dijkstra():
+def Dijkstra(grafo, vertice):
 
+    V = grafo.retornarElementos()
+
+    distancia = [] 
+
+    pai = []
+
+    S = []
+
+    Q = V
+
+    for v in V:
+        distancia.insert(v,math.inf)
+        pai.insert(v, None)
+    
+    distancia[vertice] = 0
+
+    while len(Q) != 0:
+
+        u = extrairMenor(Q)
+        S.append(u)
+
+        for v in grafo.xRetornarElementos(u):
+            relax(u,v, grafo, distancia, pai)
+    
     pass
+
+    return distancia, pai
+
+# def inicizalizarFonte(distancia, pai, fonte, V):
+
+#     for v in V:
+#         distancia.insert(v,math.inf)
+#         pai.insert(v, None)
+    
+#     distancia[fonte] = 0
+
+def relax(u, v, grafo, distancia, pai):
+
+    if distancia[v] > distancia[u] + grafo.valorPeso(u,v):
+        distancia[v] = distancia[u] + grafo.valorPeso(u,v)
+        pai[v] = u
+
+def extrairMenor(Q):
+
+    menor = [ Q[0], 0 ]
+
+    for indice, valor in enumerate(Q):
+
+        if menor[0] > valor:
+            menor = [valor, indice]
+
+    del Q[menor[1]]
+
+    return menor[0]

@@ -23,9 +23,9 @@ Prim(lista G, r) //G ponderado como lista de adjacências //r é o vértice raiz
 
 import math
 
-def Prim(Grafo, raiz):
+def Prim(grafo, raiz):
 
-    V = Grafo.retornarElementos()
+    V = grafo.retornarElementos()
 
     chave = [] 
 
@@ -47,11 +47,11 @@ def Prim(Grafo, raiz):
 
         u = extrairMenor(Q)
 
-        for v in Grafo.xRetornarElementos(u):
+        for v in grafo.xRetornarElementos(u):
 
-            if v in Q and Grafo.valorPeso(u,v) < chave[v]:
+            if v in Q and grafo.valorPeso(u,v) < chave[v]:
                 pai[v] = u
-                chave[v] = Grafo.valorPeso(u,v)
+                chave[v] = grafo.valorPeso(u,v)
                 pass
 
             pass
