@@ -1,3 +1,5 @@
+import networkx as nx
+import matplotlib.pyplot as plt
 
 class AdjuntaNo():
     def __init__(self, valor, peso):
@@ -54,3 +56,22 @@ class Grafo():
             proximo = proximo.proximo
  
         return lista
+
+    def toList(self):
+        list = []
+        for i in range(0,len(self.lista)):
+            aux = self.lista[i]
+            while aux != None:
+                list.append((i,aux.vertice,aux.peso))
+                aux = aux.proximo
+        return list
+    
+    def show(self):
+        G = nx.Graph()
+        G.add_nodes_from(self.retornarElementos())
+        G.add_weighted_edges_from(self.toList())
+        pos = nx.spring_layout(G)
+        nx.draw_networkx(G,pos)
+        labels = nx.get_edge_attributes(G,'weight')
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+        plt.show()
