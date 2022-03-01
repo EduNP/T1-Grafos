@@ -35,9 +35,19 @@ def Prim(grafo, raiz):
 
     for u in V:
 
-        chave.insert(u, math.inf)
-        pai.insert(u, None)
-        pass
+        # chave.insert(u, math.inf)
+        # pai.insert(u, None)
+        # pass
+
+        if u < len(chave):
+            chave[u] = math.inf
+        else:
+            chave.insert(u,math.inf)
+
+        if u < len(pai):
+            pai[u] = None
+        else:
+            pai.insert(u,None)
 
     chave[raiz] = 0
 
@@ -45,9 +55,13 @@ def Prim(grafo, raiz):
 
     while not len(Q) == 0:
 
-        u = extrairMenor(Q)
+        u = extrairMenor(Q, chave)
+
+        print(f"U:{u}, Adj[u]:{grafo.xRetornarElementos(u)}")
 
         for v in grafo.xRetornarElementos(u):
+
+            print(f"v({v}) in Q({Q}):{v in Q}, grafo.valorPeso(u,v)({grafo.valorPeso(u,v)}) < chave[v]({chave[v]}):{grafo.valorPeso(u,v) < chave[v]}")
 
             if v in Q and grafo.valorPeso(u,v) < chave[v]:
                 pai[v] = u
@@ -60,15 +74,15 @@ def Prim(grafo, raiz):
 
     return pai
     
-def extrairMenor(Q):
+def extrairMenor(Q, chave):
 
-    menor = [ Q[0], 0 ]
+    menor = [ math.inf, 0 ]
 
-    for indice, valor in enumerate(Q):
+    for indice, valor in enumerate(chave):
 
-        if menor[0] > valor:
+        if menor[0] > valor and indice in Q:
             menor = [valor, indice]
 
-    del Q[menor[1]]
+    print(menor)
 
-    return menor[0]
+    return Q.pop(Q.index(menor[1]))

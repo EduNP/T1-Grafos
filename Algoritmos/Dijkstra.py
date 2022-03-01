@@ -34,7 +34,7 @@ def Dijkstra(grafo, vertice):
 
     V = grafo.retornarElementos()
 
-    distancia = [] 
+    distancia = []
 
     pai = []
 
@@ -43,17 +43,31 @@ def Dijkstra(grafo, vertice):
     Q = V
 
     for v in V:
-        distancia.insert(v,math.inf)
-        pai.insert(v, None)
+
+        if v < len(distancia):
+            distancia[v] = math.inf
+
+        else:
+            distancia.insert(v,math.inf)
+
+        if v < len(pai):
+            pai[v] = None
+        else:
+            pai.insert(v,None)
     
     distancia[vertice] = 0
 
     while len(Q) != 0:
 
-        u = extrairMenor(Q)
+        u = extrairMenor(Q, distancia)
+
+        print(f"U:{u}, Adj[u]:{grafo.xRetornarElementos(u)}")
+
         S.append(u)
 
+        print(f"S:{S}")
         for v in grafo.xRetornarElementos(u):
+            
             relax(u,v, grafo, distancia, pai)
     
     pass
@@ -70,19 +84,23 @@ def Dijkstra(grafo, vertice):
 
 def relax(u, v, grafo, distancia, pai):
 
+    print("distancia: {} > {} == {}".format(distancia[v],distancia[u] + grafo.valorPeso(u,v),distancia[v] > distancia[u] + grafo.valorPeso(u,v)))
+
     if distancia[v] > distancia[u] + grafo.valorPeso(u,v):
         distancia[v] = distancia[u] + grafo.valorPeso(u,v)
         pai[v] = u
 
-def extrairMenor(Q):
+def extrairMenor(Q, distancia):
 
-    menor = [ Q[0], 0 ]
+    menor = [ math.inf, 0 ]
 
-    for indice, valor in enumerate(Q):
+    for indice, valor in enumerate(distancia):
 
-        if menor[0] > valor:
+        print(f"menor[0]({menor[0]}) > valor({valor}):{menor[0] > valor} and indice({indice}) in Q({Q}):{indice in Q}")
+
+        if menor[0] > valor and indice in Q:
             menor = [valor, indice]
 
-    del Q[menor[1]]
+    print(menor, Q)
 
-    return menor[0]
+    return Q.pop(Q.index(menor[1]))
