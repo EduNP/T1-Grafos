@@ -7,16 +7,15 @@ from Algoritmos.Prufer import *
 
 if __name__ == "__main__":
 
-    G = Grafo(4)
+    G = Grafo(3)
 
-    pesos = [10,5,12,7]
+    pesos = [5,5,9]
 
     G.adicionarAresta(0,1,pesos[0])
     G.adicionarAresta(1,2,pesos[1])
-    G.adicionarAresta(2,3,pesos[2])
-    G.adicionarAresta(3,1,pesos[3])
+    G.adicionarAresta(0,2,pesos[2])
 
-    distancia, retorno  = Dijkstra(G,3)
+    distancia, retorno  = Dijkstra(G,0)
 
     print(retorno, distancia)
 
@@ -30,19 +29,19 @@ if __name__ == "__main__":
 
     nG.show()
 
-    # retorno = Prim(G,0)
+    retorno = Prim(G,0)
 
-    # print(retorno)
+    print(retorno)
 
-    # G.show()
+    G.show()
 
-    # nG = Grafo(len(retorno))
+    nG = Grafo(len(retorno))
 
-    # for i in range(0,len(retorno)):
-    #     if retorno[i] != None:
-    #         nG.adicionarAresta(i,retorno[i],G.valorPeso(i,retorno[i]))
+    for i in range(0,len(retorno)):
+        if retorno[i] != None:
+            nG.adicionarAresta(i,retorno[i],G.valorPeso(i,retorno[i]))
 
-    # nG.show()
+    nG.show()
 
     # #Teste Prufer
     # G = Grafo(6)
@@ -76,6 +75,20 @@ if __name__ == "__main__":
     # PrintCaminho(grafo,pai,0,3)
     # grafo.show()
 
+
+    # distancia, retorno  = Dijkstra(grafo,3)
+
+    # print(retorno, distancia)
+
+    # grafo.show()
+
+    # nG = Grafo(len(retorno))
+
+    # for i in range(0,len(retorno)):
+    #     if retorno[i] != None:
+    #         nG.adicionarAresta(i,retorno[i],grafo.valorPeso(i,retorno[i]))
+
+    # nG.show()
 
     # distancia, pai = Dijkstra(G, 0)
 
