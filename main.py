@@ -4,9 +4,9 @@ from Algoritmos.Prim import *
 from Algoritmos.Grafo.grafo import *
 from Algoritmos.Prufer import *
 
-
 if __name__ == "__main__":
 
+    #Teste Dijkstra
     G = Grafo(3)
 
     pesos = [5,5,9]
@@ -43,38 +43,77 @@ if __name__ == "__main__":
 
     nG.show()
 
-    # #Teste Prufer
-    # G = Grafo(6)
-    # G.adicionarAresta(3,0,0)
-    # G.adicionarAresta(3,1,0)
-    # G.adicionarAresta(3,2,0)
-    # G.adicionarAresta(3,4,0)
-    # G.adicionarAresta(4,5,0)
-    # G.show()
-    # s = codigoPrufer(G)
-    # for i in range(len(s)):
-    #     print(s[i])
+    #Teste Prufer
+    print("Teste 1 - Prufer:")
+    GP = Grafo(6)
+    GP.adicionarAresta(3,0,0)
+    GP.adicionarAresta(3,1,0)
+    GP.adicionarAresta(3,2,0)
+    GP.adicionarAresta(3,4,0)
+    GP.adicionarAresta(4,5,0)
+   
+    s = codigoPrufer(GP)
+    print("Codigo de prufer:")
+    for i in range(len(s)):
+        print(s[i])
 
-    # T = decodificadorPrufer(s)
-    # T.show()
+    GP.show()
+    T = decodificadorPrufer(s)
+    T.show()
     
-    # #Teste da BFS
-    # grafo = Grafo(6)
-    # grafo.adicionarAresta(0,1,0)
-    # grafo.adicionarAresta(0,2,0)
-    # grafo.adicionarAresta(1,3,0)
-    # grafo.adicionarAresta(1,4,0)
-    # grafo.adicionarAresta(2,4,0)
-    # grafo.adicionarAresta(3,4,0)
-    # grafo.adicionarAresta(3,5,0)
-    # grafo.adicionarAresta(4,5,0)
+    print("Teste 2 - Prufer:")
+    GP2 = Grafo(6)
+    GP2.adicionarAresta(3,0,0)
+    GP2.adicionarAresta(3,1,0)
+    GP2.adicionarAresta(3,4,0)
+    GP2.adicionarAresta(4,2,0)
+    GP2.adicionarAresta(4,5,0)
+   
+    s2 = codigoPrufer(GP2)
+    print("Codigo de prufer:")
+    for i in range(len(s2)):
+        print(s2[i])
 
-    # d, pai = BFS(grafo,0)
-    # print("Vetor D:", d)
-    # print("Vetor pai:", pai)
-    # PrintCaminho(grafo,pai,0,3)
-    # grafo.show()
+    GP2.show()
+    T2 = decodificadorPrufer(s2)
+    T2.show()
 
+
+    #Teste da Busca Largura
+    print("Teste 1 - BFS:")
+    grafo = Grafo(6)
+    grafo.adicionarAresta(0,1,0)
+    grafo.adicionarAresta(0,2,0)
+    grafo.adicionarAresta(1,3,0)
+    grafo.adicionarAresta(1,4,0)
+    grafo.adicionarAresta(2,4,0)
+    grafo.adicionarAresta(3,4,0)
+    grafo.adicionarAresta(3,5,0)
+    grafo.adicionarAresta(4,5,0)
+
+    d, pai = BFS(grafo,0)
+    print("Vetor D:", d)
+    print("Vetor pai:", pai)
+    print("Caminho de 0 até 3:")
+    PrintCaminho(grafo,pai,0,3)
+    grafo.show()
+
+    print("Teste 2 - BFS:")
+    grafo2 = Grafo(6)
+    grafo2.adicionarAresta(0,1,0)
+    grafo2.adicionarAresta(0,4,0)
+    grafo2.adicionarAresta(1,2,0)
+    grafo2.adicionarAresta(1,4,0)
+    grafo2.adicionarAresta(2,3,0)
+    grafo2.adicionarAresta(3,4,0)
+    grafo2.adicionarAresta(3,5,0)
+
+    d2, pai2 = BFS(grafo2,0)
+    print("Vetor D:", d2)
+    print("Vetor pai:", pai2)
+    print("Caminho de 1 até 5:")
+    PrintCaminho(grafo2,pai2,1,5)
+    grafo2.show()
 
     # distancia, retorno  = Dijkstra(grafo,3)
 
