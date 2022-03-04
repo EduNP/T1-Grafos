@@ -33,13 +33,17 @@ class Grafo():
         if atual == None:
             return 0
 
-        while atual.vertice != destino:
+        else:
+            while atual.vertice != destino:
 
-            atual = atual.proximo
-            if atual == None:
-                break
-        
-        return atual.peso
+                if atual.proximo == None:
+                    break
+                else:
+                    atual = atual.proximo
+
+
+            return atual.peso
+ 
     
     def retornarElementos(self):
 
@@ -51,16 +55,17 @@ class Grafo():
 
         lista = []
         
-        lista.append(self.lista[elemento].vertice)
+        if self.lista[elemento] != None:
+            lista.append(self.lista[elemento].vertice)
 
-        proximo = self.lista[elemento].proximo
+            proximo = self.lista[elemento].proximo
 
-        while proximo != None:
+            while proximo != None:
 
-            lista.append(proximo.vertice)
-            proximo = proximo.proximo
- 
-        return lista
+                lista.append(proximo.vertice)
+                proximo = proximo.proximo
+
+        return lista    
 
     def toList(self):
         list = []
@@ -71,23 +76,35 @@ class Grafo():
                 aux = aux.proximo
         return list
     
-    def show(self):
-        G = nx.Graph()
-        G.add_nodes_from(self.retornarElementos())
-        G.add_weighted_edges_from(self.toList())
+    def show(self, dictNome):
+        G = nx.DiGraph()
+
+        lista = [dictNome[elemento] for elemento in self.retornarElementos()]
+
+        G.add_nodes_from(lista)
+        
+        lista = [(dictNome[elemento[0]],dictNome[elemento[1]],elemento[2]) for elemento in self.toList()]
+
         pos = nx.spring_layout(G)
         nx.draw_networkx(G,pos)
         labels = nx.get_edge_attributes(G,'weight')
         nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
         plt.show()
     
-    def showDigrafo(self):
+    def showDigrafo(self, dictNome):
+        
         G = nx.DiGraph()
-        G.add_nodes_from(self.retornarElementos())
-        G.add_weighted_edges_from(self.toList())
+
+        lista = [dictNome[elemento] for elemento in self.retornarElementos()]
+
+        G.add_nodes_from(lista)
+        
+        lista = [(dictNome[elemento[0]],dictNome[elemento[1]],elemento[2]) for elemento in self.toList()]
+
+        G.add_weighted_edges_from(lista)
         pos = nx.circular_layout(G)
         print(pos)
-        nx.draw_networkx(G,pos, connectionstyle='arc3, rad = 0.2')
+        nx.draw_networkx(G,pos, connectionstyle='arc3, rad = 0')
         labels = nx.get_edge_attributes(G,'weight')
         print(labels)
         nx.draw_networkx_edge_labels(G, pos, edge_labels=labels, label_pos=0.8)
