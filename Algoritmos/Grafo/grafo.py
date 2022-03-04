@@ -20,7 +20,12 @@ class Grafo():
         no = AdjuntaNo(inicio, peso)
         no.proximo = self.lista[destino] #insere na lsita de Destino para Inicio
         self.lista[destino] = no
-    
+
+    def adicionarArestaDigrafo(self, inicio, destino, peso):
+        no = AdjuntaNo(destino, peso) #cria um novo no
+        no.proximo = self.lista[inicio] #insere na lista de Inicio para destino
+        self.lista[inicio] = no
+
     def valorPeso(self, inicio, destino):
 
         atual = self.lista[inicio]
