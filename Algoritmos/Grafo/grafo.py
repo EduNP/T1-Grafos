@@ -80,3 +80,13 @@ class Grafo():
         labels = nx.get_edge_attributes(G,'weight')
         nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
         plt.show()
+    
+    def showDigrafo(self):
+        G = nx.DiGraph()
+        G.add_nodes_from(self.retornarElementos())
+        G.add_weighted_edges_from(self.toList())
+        pos = nx.circular_layout(G)
+        nx.draw_networkx(G,pos)
+        labels = nx.get_edge_attributes(G,'weight')
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+        plt.show()
