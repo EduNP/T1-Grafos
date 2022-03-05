@@ -1,0 +1,62 @@
+
+    #Teste Dijkstra
+    #G = Grafo(5)
+
+    #chars = {'s':0,'t':1,'x':2,'y':3,'z':4}
+
+    # inv_chars = {chars[k] : k for k in chars}
+
+    # G.adicionarArestaDigrafo(chars['s'],chars['t'],6)
+    # G.adicionarArestaDigrafo(chars['s'],chars['y'],7)
+    # G.adicionarArestaDigrafo(chars['t'],chars['y'],8)
+    # G.adicionarArestaDigrafo(chars['t'],chars['z'],-4)
+    # G.adicionarArestaDigrafo(chars['t'],chars['x'],5)
+    # G.adicionarArestaDigrafo(chars['y'],chars['x'],-3)
+    # G.adicionarArestaDigrafo(chars['y'],chars['z'],9)
+    # G.adicionarArestaDigrafo(chars['x'],chars['t'],-2)
+    # G.adicionarArestaDigrafo(chars['z'],chars['x'],7)
+    # G.adicionarArestaDigrafo(chars['z'],chars['s'],2)
+
+    # distancia, retorno  = Dijkstra(G,chars['s'])
+
+    # print(retorno, distancia)
+
+    # G.showDigrafo(inv_chars)
+
+    # nG = Grafo(len(retorno))
+
+    # for i in range(0,len(retorno)):
+    #     if retorno[i] != None:
+    #         nG.adicionarArestaDigrafo(retorno[i],i,G.valorPeso(retorno[i],i))
+
+    # nG.showDigrafo(inv_chars)
+
+    # #Teste Dijkstra
+    # G = Grafo(6)
+
+      # G.adicionarArestaDigrafo(chars['s'],chars['r'],10)
+    # G.adicionarArestaDigrafo(chars['s'],chars['u'],5)
+    # G.adicionarArestaDigrafo(chars['r'],chars['u'],2)
+    # G.adicionarArestaDigrafo(chars['u'],chars['r'],3)
+    # G.adicionarArestaDigrafo(chars['r'],chars['w'],1)
+    # G.adicionarArestaDigrafo(chars['u'],chars['v'],2)
+    # G.adicionarArestaDigrafo(chars['u'],chars['w'],9)
+    # G.adicionarArestaDigrafo(chars['w'],chars['v'],4)
+    # G.adicionarArestaDigrafo(chars['v'],chars['w'],6)
+    # G.adicionarArestaDigrafo(chars['w'],chars['t'],2)
+    # G.adicionarArestaDigrafo(chars['v'],chars['t'],5)
+
+    # distancia, retorno  = Dijkstra(G,chars['s'])
+
+    # print(retorno, distancia)
+
+    # G.showDigrafo(inv_chars)
+
+    # nG = Grafo(len(retorno))
+
+    # for i in range(0,len(retorno)):
+    #     if retorno[i] != None:
+    #         nG.adicionarArestaDigrafo(retorno[i],i,G.valorPeso(retorno[i],i))
+
+    # nG.showDigrafo(inv_chars)
+

@@ -4,144 +4,144 @@ from Algoritmos.Prim import *
 from Algoritmos.Grafo.grafo import *
 from Algoritmos.Prufer import *
 
-if __name__ == "__main__":
+def teste(chars, lista, comeco,algoritmo, mostrar=False):
 
-    #Teste Dijkstra
-    G = Grafo(6)
-
-
-    chars = {'s':0,'r':1,'u':2,'w':3,'v':4,'t':5}
+    G = Grafo(len(chars))
 
     inv_chars = {chars[k] : k for k in chars}
 
-    G.adicionarArestaDigrafo(chars['s'],chars['r'],10)
-    G.adicionarArestaDigrafo(chars['s'],chars['u'],5)
-    G.adicionarArestaDigrafo(chars['r'],chars['u'],2)
-    G.adicionarArestaDigrafo(chars['u'],chars['r'],3)
-    G.adicionarArestaDigrafo(chars['r'],chars['w'],1)
-    G.adicionarArestaDigrafo(chars['u'],chars['v'],2)
-    G.adicionarArestaDigrafo(chars['u'],chars['w'],9)
-    G.adicionarArestaDigrafo(chars['w'],chars['v'],4)
-    G.adicionarArestaDigrafo(chars['v'],chars['w'],6)
-    G.adicionarArestaDigrafo(chars['w'],chars['t'],3)
-    G.adicionarArestaDigrafo(chars['v'],chars['t'],5)
-
-    distancia, retorno  = Dijkstra(G,chars['u'])
-
-    print(retorno, distancia)
-
-    G.showDigrafo(inv_chars)
-
-    nG = Grafo(len(retorno))
-
-    for i in range(0,len(retorno)):
-        if retorno[i] != None:
-            nG.adicionarArestaDigrafo(retorno[i],i,G.valorPeso(retorno[i],i))
-
-    nG.showDigrafo(inv_chars)
-
-    # retorno = Prim(G,0)
-
-    # print(retorno)
-
-    # G.show()
-
-    # nG = Grafo(len(retorno))
-
-    # for i in range(0,len(retorno)):
-    #     if retorno[i] != None:
-    #         nG.adicionarAresta(i,retorno[i],G.valorPeso(i,retorno[i]))
-
-    # nG.show()
-
-    # #Teste Prufer
-    # print("Teste 1 - Prufer:")
-    # GP = Grafo(6)
-    # GP.adicionarAresta(3,0,0)
-    # GP.adicionarAresta(3,1,0)
-    # GP.adicionarAresta(3,2,0)
-    # GP.adicionarAresta(3,4,0)
-    # GP.adicionarAresta(4,5,0)
-   
-    # s = codigoPrufer(GP)
-    # print("Codigo de prufer:")
-    # for i in range(len(s)):
-    #     print(s[i])
-
-    # GP.show()
-    # T = decodificadorPrufer(s)
-    # T.show()
+    for elemento in lista:
+        G.adicionarAresta(*elemento)
     
-    # print("Teste 2 - Prufer:")
-    # GP2 = Grafo(6)
-    # GP2.adicionarAresta(3,0,0)
-    # GP2.adicionarAresta(3,1,0)
-    # GP2.adicionarAresta(3,4,0)
-    # GP2.adicionarAresta(4,2,0)
-    # GP2.adicionarAresta(4,5,0)
-   
-    # s2 = codigoPrufer(GP2)
-    # print("Codigo de prufer:")
-    # for i in range(len(s2)):
-    #     print(s2[i])
+    retorno = algoritmo(G,chars[comeco])
 
-    # GP2.show()
-    # T2 = decodificadorPrufer(s2)
-    # T2.show()
+    if mostrar:
+
+        G.show(inv_chars)
+
+        nG = Grafo(len(retorno[0]))
+
+        for i in range(0,len(retorno[0])):
+            if retorno[0][i] != None:
+                nG.adicionarAresta(retorno[0][i],i,G.valorPeso(retorno[0][i],i))
+
+        nG.show(inv_chars)
+    
+
+    return retorno
+
+def testeDigrafo(chars, lista, comeco, algoritmo, mostrar=False):
+
+    G = Grafo(len(chars))
+
+    inv_chars = {chars[k] : k for k in chars}
+
+    for elemento in lista:
+        G.adicionarArestaDigrafo(*elemento)
+    
+    retorno  = algoritmo(G,chars[comeco])
+
+    if mostrar:
+
+        G.showDigrafo(inv_chars)
+
+        nG = Grafo(len(retorno[0]))
+
+        for i in range(0,len(retorno[0])):
+            if retorno[0][i] != None:
+                nG.adicionarArestaDigrafo(retorno[0][i],i,G.valorPeso(retorno[0][i],i))
+
+        nG.showDigrafo(inv_chars)
+    
+
+    return retorno
+
+def retornarCasosDijkstra():
+
+    casos = []
+
+    chars = {'s':0,'r':1,'u':2,'w':3,'v':4,'t':5}
+
+    pesos = [
+        (chars['s'],chars['r'],10),(chars['s'],chars['u'],5),(chars['r'],chars['u'],2),
+        (chars['u'],chars['r'],3),(chars['r'],chars['w'],1),(chars['u'],chars['v'],2),
+        (chars['u'],chars['w'],9),(chars['w'],chars['v'],4),(chars['v'],chars['w'],6),
+        (chars['w'],chars['t'],2),(chars['v'],chars['t'],5)
+    
+    ]
+
+    casos.append([chars,pesos])
+
+    chars = {'s':0,'t':1,'x':2,'y':3,'z':4}
+
+    pesos = [
+        (chars['s'],chars['t'],6),(chars['s'],chars['y'],7),(chars['t'],chars['y'],8),
+        (chars['t'],chars['z'],-4),(chars['t'],chars['x'],5),(chars['y'],chars['x'],-3),
+        (chars['y'],chars['z'],9),(chars['x'],chars['t'],-2),(chars['z'],chars['x'],7),
+        (chars['z'],chars['s'],2)
+    
+    ]
+
+    casos.append([chars,pesos])
+
+    return casos
+
+def retornarCasosPrim():
+
+    casos = []
+
+    chars = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5,'g':6,'h':7,'i':8}
+
+    pesos = [
+        (chars['a'],chars['b'],4),(chars['a'],chars['h'],8),
+        (chars['b'],chars['h'],11),(chars['b'],chars['c'],8),
+        (chars['h'],chars['i'],7),(chars['h'],chars['g'],1),
+        (chars['c'],chars['i'],2),(chars['c'],chars['f'],4),
+        (chars['g'],chars['i'],6),(chars['g'],chars['f'],2),
+        (chars['e'],chars['f'],10),(chars['e'],chars['d'],9),
+        (chars['d'],chars['c'],7),(chars['d'],chars['f'],14)
+    
+    ]
+
+    chars = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5}
+
+    casos.append([chars,pesos])
+
+    pesos = [
+        (chars['a'],chars['b'],6),(chars['a'],chars['c'],3),
+        (chars['a'],chars['e'],9),(chars['b'],chars['d'],2),
+        (chars['b'],chars['c'],4),(chars['c'],chars['d'],2),
+        (chars['c'],chars['e'],9),(chars['c'],chars['f'],9),
+        (chars['d'],chars['f'],8),(chars['e'],chars['f'],8)
+    
+    ]
+
+    casos.append([chars,pesos])
+
+    return casos
+
+def executarCasos(testeTipo, casos, algoritmo):
+
+    for caso in casos:
+
+        print(f"Nós: {caso[0].keys()}")
+
+        raiz = input("Digite a raiz:")
+
+        if raiz in caso[0]:
+
+            retorno = testeTipo(caso[0],caso[1],raiz,algoritmo, mostrar=True)
+
+            print(retorno)
+        else:
+
+            print("raiz não encontrada!")
 
 
-    # #Teste da Busca Largura
-    # print("Teste 1 - BFS:")
-    # grafo = Grafo(6)
-    # grafo.adicionarAresta(0,1,0)
-    # grafo.adicionarAresta(0,2,0)
-    # grafo.adicionarAresta(1,3,0)
-    # grafo.adicionarAresta(1,4,0)
-    # grafo.adicionarAresta(2,4,0)
-    # grafo.adicionarAresta(3,4,0)
-    # grafo.adicionarAresta(3,5,0)
-    # grafo.adicionarAresta(4,5,0)
+if __name__ == "__main__":
 
-    # d, pai = BFS(grafo,0)
-    # print("Vetor D:", d)
-    # print("Vetor pai:", pai)
-    # print("Caminho de 0 até 3:")
-    # PrintCaminho(grafo,pai,0,3)
-    # grafo.show()
 
-    # print("Teste 2 - BFS:")
-    # grafo2 = Grafo(6)
-    # grafo2.adicionarAresta(0,1,0)
-    # grafo2.adicionarAresta(0,4,0)
-    # grafo2.adicionarAresta(1,2,0)
-    # grafo2.adicionarAresta(1,4,0)
-    # grafo2.adicionarAresta(2,3,0)
-    # grafo2.adicionarAresta(3,4,0)
-    # grafo2.adicionarAresta(3,5,0)
+    # executarCasos(testeDigrafo,retornarCasosDijkstra(),Dijkstra)
 
-    # d2, pai2 = BFS(grafo2,0)
-    # print("Vetor D:", d2)
-    # print("Vetor pai:", pai2)
-    # print("Caminho de 1 até 5:")
-    # PrintCaminho(grafo2,pai2,1,5)
-    # grafo2.show()
+    executarCasos(teste,retornarCasosPrim(),Prim)
 
-    # # distancia, retorno  = Dijkstra(grafo,3)
-
-    # # print(retorno, distancia)
-
-    # # grafo.show()
-
-    # # nG = Grafo(len(retorno))
-
-    # # for i in range(0,len(retorno)):
-    # #     if retorno[i] != None:
-    # #         nG.adicionarAresta(i,retorno[i],grafo.valorPeso(i,retorno[i]))
-
-    # # nG.show()
-
-    # # distancia, pai = Dijkstra(G, 0)
-
-    # # print(distancia, pai)
-
-    # pass

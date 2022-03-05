@@ -61,18 +61,15 @@ def Dijkstra(grafo, vertice):
 
         u = extrairMenor(Q, distancia)
 
-        print(f"U:{u}, Adj[u]:{grafo.xRetornarElementos(u)}")
-
         S.append(u)
 
-        print(f"S:{S}")
         for v in grafo.xRetornarElementos(u):
             
             relax(u,v, grafo, distancia, pai)
     
     pass
 
-    return distancia, pai
+    return [pai, distancia]
 
 # def inicizalizarFonte(distancia, pai, fonte, V):
 
@@ -84,8 +81,6 @@ def Dijkstra(grafo, vertice):
 
 def relax(u, v, grafo, distancia, pai):
 
-    print("distancia: {} > {} == {}".format(distancia[v],distancia[u] + grafo.valorPeso(u,v),distancia[v] > distancia[u] + grafo.valorPeso(u,v)))
-
     if distancia[v] > distancia[u] + grafo.valorPeso(u,v):
         distancia[v] = distancia[u] + grafo.valorPeso(u,v)
         pai[v] = u
@@ -96,11 +91,7 @@ def extrairMenor(Q, distancia):
 
     for indice, valor in enumerate(distancia):
 
-        print(f"menor[0]({menor[0]}) > valor({valor}):{menor[0] > valor} and indice({indice}) in Q({Q}):{indice in Q}")
-
         if menor[0] > valor and indice in Q:
             menor = [valor, indice]
-
-    print(menor, Q)
 
     return Q.pop(Q.index(menor[1]))
