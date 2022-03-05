@@ -84,11 +84,29 @@ def retornarCasosDijkstra():
 
     casos.append([chars,pesos])
 
+    chars = {'a':0,'b':1,'c':2}
+
+    pesos = [
+        (chars['a'],chars['b'],5),(chars['b'],chars['c'],5),(chars['a'],chars['c'],8)
+
+    ]
+
+    casos.append([chars,pesos])
+
     return casos
 
 def retornarCasosPrim():
 
     casos = []
+
+    chars = {'a':0,'b':1,'c':2}
+
+    pesos = [
+        (chars['a'],chars['b'],5),(chars['b'],chars['c'],5),(chars['a'],chars['c'],8)
+
+    ]
+
+    casos.append([chars,pesos])
 
     chars = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5,'g':6,'h':7,'i':8}
 
@@ -103,9 +121,9 @@ def retornarCasosPrim():
     
     ]
 
-    chars = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5}
-
     casos.append([chars,pesos])
+
+    chars = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5}
 
     pesos = [
         (chars['a'],chars['b'],6),(chars['a'],chars['c'],3),
@@ -141,7 +159,7 @@ def executarCasos(testeTipo, casos, algoritmo):
 if __name__ == "__main__":
 
 
-    # executarCasos(testeDigrafo,retornarCasosDijkstra(),Dijkstra)
+    #executarCasos(testeDigrafo,retornarCasosDijkstra(),Dijkstra)
 
     executarCasos(teste,retornarCasosPrim(),Prim)
 
