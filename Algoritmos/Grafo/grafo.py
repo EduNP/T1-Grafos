@@ -110,4 +110,3 @@ class Grafo():
 
         nx.draw_networkx_edge_labels(G, pos, edge_labels=labels, label_pos=0.8)
         plt.show()
-        #Ola
