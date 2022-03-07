@@ -4,6 +4,7 @@ from Algoritmos.Prim import *
 from Algoritmos.Grafo.grafo import *
 from Algoritmos.Prufer import *
 
+
 def teste(chars, lista, comeco,algoritmo, mostrar=False):
 
     G = Grafo(len(chars))
@@ -84,6 +85,7 @@ def retornarCasosDijkstra():
 
     casos.append([chars,pesos])
 
+
     return casos
 
 def retornarCasosPrim():
@@ -146,86 +148,6 @@ def executarCasos(testeTipo, casos, algoritmo):
 
             print("raiz não encontrada!")
 
-def executarTestesPrufer():
-    charsGP = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5}
-    inv_charsGP = {charsGP[k] : k for k in charsGP}
-
-    GP = Grafo(6)
-    GP.adicionarAresta(charsGP['d'],charsGP['a'],0)
-    GP.adicionarAresta(charsGP['d'],charsGP['b'],0)
-    GP.adicionarAresta(charsGP['d'],charsGP['c'],0)
-    GP.adicionarAresta(charsGP['d'],charsGP['e'],0)
-    GP.adicionarAresta(charsGP['e'],charsGP['f'],0)
-
-    s = codigoPrufer(GP)
-
-    print("Codigo de prufer:")
-    for i in range(len(s)):
-        print(s[i])
-
-    GP.show(inv_charsGP)
-
-    T = decodificadorPrufer(s)
-    T.show(inv_charsGP)
-
-    print("Teste 2 - Prufer:")
-    GP2 = Grafo(5)
-    GP2.adicionarAresta(charsGP['a'],charsGP['b'],0)
-    GP2.adicionarAresta(charsGP['b'],charsGP['c'],0)
-    GP2.adicionarAresta(charsGP['b'],charsGP['d'],0)
-    GP2.adicionarAresta(charsGP['d'],charsGP['e'],0)
-    s2 = codigoPrufer(GP2)
-    print("Codigo de prufer:")
-    for i in range(len(s2)):
-         print(s2[i])
-
-    GP2.show(inv_charsGP)
-    T2 = decodificadorPrufer(s2)
-    T2.show(inv_charsGP)
-
-def executaTestesBFS():
-    charsGP = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5}
-    inv_charsGP = {charsGP[k] : k for k in charsGP}
-    print("Teste 1 - BFS:")
-
-    grafo = Grafo(6)
-    grafo.adicionarAresta(charsGP['a'],charsGP['b'],0)
-    grafo.adicionarAresta(charsGP['a'],charsGP['c'],0)
-    grafo.adicionarAresta(charsGP['b'],charsGP['d'],0)
-    grafo.adicionarAresta(charsGP['b'],charsGP['e'],0)
-    grafo.adicionarAresta(charsGP['c'],charsGP['e'],0)
-    grafo.adicionarAresta(charsGP['d'],charsGP['e'],0)
-    grafo.adicionarAresta(charsGP['d'],charsGP['f'],0)
-    grafo.adicionarAresta(charsGP['e'],charsGP['f'],0)
-
-    d, pai = BFS(grafo,0)
-    print("Vetor D:", d)
-    print("Vetor pai:", pai)
-    print("Caminho de a=0 até d=3:")
-    PrintCaminho(grafo,pai,0,3)
-    grafo.show(inv_charsGP)
-
-    charsGP = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5, 'g':6}
-    inv_charsGP = {charsGP[k] : k for k in charsGP}
-
-  
-    print("Teste 2 - BFS:")
-    grafo2 = Grafo(7)
-    grafo2.adicionarAresta(charsGP['a'],charsGP['b'],0)
-    grafo2.adicionarAresta(charsGP['a'],charsGP['e'],0)
-    grafo2.adicionarAresta(charsGP['b'],charsGP['c'],0)
-    grafo2.adicionarAresta(charsGP['b'],charsGP['e'],0)
-    grafo2.adicionarAresta(charsGP['c'],charsGP['d'],0)
-    grafo2.adicionarAresta(charsGP['d'],charsGP['e'],0)
-    grafo2.adicionarAresta(charsGP['d'],charsGP['f'],0)
-    grafo2.adicionarAresta(charsGP['f'],charsGP['g'],0)
-
-    d2, pai2 = BFS(grafo2,0)
-    print("Vetor D:", d2)
-    print("Vetor pai:", pai2)
-    print("Caminho de b = 1 até f = 5:")
-    PrintCaminho(grafo2,pai2,1,5)
-    grafo2.show(inv_charsGP)
 
 if __name__ == "__main__":
 
@@ -247,5 +169,3 @@ if __name__ == "__main__":
 
     executarCasos(teste,retornarCasosPrim(),Prim)
 
-    executarTestesPrufer()
-    executaTestesBFS()
